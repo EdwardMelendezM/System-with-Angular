@@ -1,0 +1,17 @@
+.btn_custom {
+  color: #767070;
+  transition: 0.3ms ease-in;
+  border: 0;
+  background-color: none;
+  border-radius: 10px;
+  padding: auto;
+
+  &:hover {
+    color: #aca4a4;
+  }
+}
+
+.modal_small{
+  z-index: 1050;
+    /* Ajusta este valor según tus necesidades */
+}

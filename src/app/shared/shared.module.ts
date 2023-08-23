@@ -6,6 +6,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import {  ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { SearchBoxComponent } from './components/search-box/search-box.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { ModalSmallComponent } from './components/modal-small/modal-small.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,17 +18,21 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
     AboutPageComponent,
     SidebarComponent,
     ContactPageComponent,
-    SearchBoxComponent
+    SearchBoxComponent,
+    ModalComponent,
+    ModalSmallComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule
   ],
   exports:[
     HomePageComponent,
     AboutPageComponent,
     SidebarComponent,
-    SearchBoxComponent
+    SearchBoxComponent,
+    ModalComponent
   ]
 })
 export class SharedModule { }

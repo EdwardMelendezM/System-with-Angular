@@ -1,0 +1,21 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn_custom" data-toggle="modal" data-target="#exampleModalCenter" (click)="onOpenModal()" >
+  Delete
+</button>
+
+<!-- Modal -->
+<div #modalSmall class="modal fade modal_small" id="exampleModalCenter" tabindex="1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+    <div class="modal-content shadow">
+     
+      <div class="modal-body">
+        Are you sure to delete this comment?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onCloseModal()" >Close</button>
+        <button type="button" class="btn btn-danger" (click)="onDelete()" >Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
