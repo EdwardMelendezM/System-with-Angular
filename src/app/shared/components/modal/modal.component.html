@@ -1,112 +1,118 @@
-<!-- Button trigger modal -->
-<button (click)="onOpenModal()" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
-  Ver comentarios
-</button> 
+  <!-- Button trigger modal -->
+  <button (click)="onOpenModal()" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
+    Ver comentarios
+  </button> 
 
-<!-- Modal -->
-<div #exampleModalCenter class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">
-          Hacer un CRUD de las colecciones Mensajeria y Evaluaciones
-        </h5>
-        <div class="d-flex gap-2">
-          <button (click)="onSorted('desc')" type="button" class="btn btn-sm btn-secundary" data-dismiss="modal" aria-label="Close">
-            <span role="img" aria-label="Más recientes primero" class="css-1wits42"
-              style="--icon-primary-color: currentColor; --icon-secondary-color: var(--ds-surface, #FFFFFF);"><svg
-                role="presentation" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                  <path
-                    d="M7.8,4.3 C7.6,4.1 7.3,4 7,4 C6.7,4 6.4,4.1 6.2,4.3 L3.3,7.2 C2.9,7.6 2.9,8.3 3.3,8.7 C3.7,9.1 4.3,9.1 4.7,8.7 L6,7.4 L6,19.1 C6,19.6 6.4,20 7,20 C7.6,20 8,19.6 8,19.1 L8,7.4 L9.3,8.7 C9.7,9.1 10.3,9.1 10.7,8.7 C11.1,8.3 11.1,7.6 10.7,7.2 C10.0475461,6.54754611 9.5582057,6.0582057 9.23197876,5.73197876 C8.91376126,5.41376126 8.436435,4.936435 7.8,4.3 Z"
-                    id="Path" fill="currentColor" fill-rule="nonzero"></path>
-                  <path
-                    d="M21,17 L13,17 C12.4,17 12,17.4 12,18 C12,18.6 12.4,19 13,19 L21,19 C21.6,19 22,18.6 22,18 C22,17.4 21.6,17 21,17 Z"
-                    id="Path" fill="currentColor" fill-rule="nonzero"></path>
-                  <path
-                    d="M13,13 L18,13 C18.6,13 19,12.6 19,12 C19,11.4 18.6,11 18,11 L13,11 C12.4,11 12,11.4 12,12 C12,12.6 12.4,13 13,13 Z"
-                    id="Path" fill="currentColor" fill-rule="nonzero"></path>
-                  <path d="M13,7 L16,7 C16.6,7 17,6.6 17,6 C17,5.4 16.6,5 16,5 L13,5 C12.4,5 12,5.4 12,6 C12,6.6 12.4,7 13,7 Z"
-                    id="Path" fill="currentColor" fill-rule="nonzero"></path>
-                </g>
-              </svg></span>
-          </button>
-          <button (click)="onCloseModal()" type="button" class="btn btn-sm btn-danger" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      </div>
-      <div class="modal-body">
-        <div class="comment-list">
-          <div *ngIf="comments.length===0" class="comment_empty" >
-              No comments
+  <!-- Modal -->
+  <div #exampleModalCenter class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">
+            Hacer un CRUD de las colecciones Mensajeria y Evaluaciones
+          </h5>
+          <div class="d-flex gap-2">
+            <button (click)="onSorted('desc')" type="button" class="btn btn-sm btn-secundary" data-dismiss="modal" aria-label="Close">
+              <span role="img" aria-label="Más recientes primero" class="css-1wits42"
+                style="--icon-primary-color: currentColor; --icon-secondary-color: var(--ds-surface, #FFFFFF);"><svg
+                  role="presentation" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <path
+                      d="M7.8,4.3 C7.6,4.1 7.3,4 7,4 C6.7,4 6.4,4.1 6.2,4.3 L3.3,7.2 C2.9,7.6 2.9,8.3 3.3,8.7 C3.7,9.1 4.3,9.1 4.7,8.7 L6,7.4 L6,19.1 C6,19.6 6.4,20 7,20 C7.6,20 8,19.6 8,19.1 L8,7.4 L9.3,8.7 C9.7,9.1 10.3,9.1 10.7,8.7 C11.1,8.3 11.1,7.6 10.7,7.2 C10.0475461,6.54754611 9.5582057,6.0582057 9.23197876,5.73197876 C8.91376126,5.41376126 8.436435,4.936435 7.8,4.3 Z"
+                      id="Path" fill="currentColor" fill-rule="nonzero"></path>
+                    <path
+                      d="M21,17 L13,17 C12.4,17 12,17.4 12,18 C12,18.6 12.4,19 13,19 L21,19 C21.6,19 22,18.6 22,18 C22,17.4 21.6,17 21,17 Z"
+                      id="Path" fill="currentColor" fill-rule="nonzero"></path>
+                    <path
+                      d="M13,13 L18,13 C18.6,13 19,12.6 19,12 C19,11.4 18.6,11 18,11 L13,11 C12.4,11 12,11.4 12,12 C12,12.6 12.4,13 13,13 Z"
+                      id="Path" fill="currentColor" fill-rule="nonzero"></path>
+                    <path d="M13,7 L16,7 C16.6,7 17,6.6 17,6 C17,5.4 16.6,5 16,5 L13,5 C12.4,5 12,5.4 12,6 C12,6.6 12.4,7 13,7 Z"
+                      id="Path" fill="currentColor" fill-rule="nonzero"></path>
+                  </g>
+                </svg></span>
+            </button>
+            <button (click)="onCloseModal()" type="button" class="btn btn-sm btn-danger" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-          <div *ngFor="let comment of comments; let i = index" class="comment">
+        </div>
+        <div class="modal-body">
+          <div class="comment-list">
+            <div *ngIf="comments.length===0" class="comment_empty" >
+                No comments
+            </div>
+            <div *ngFor="let comment of comments; let i = index" class="comment">
+              <img src="/assets/logo/placeholder_user.png" alt="User Logo" class="img-fluid rounded-circle comment-image">
+              <div class="comment-body">
+                <div class="comment-header">
+                  <p class="user-name">{{ comment.userName }}</p>
+                  <p class="comment-date">{{ comment.date | date: 'MMM d, y' }}</p>
+                  <p class="comment-time">{{ comment.date | date: 'h:mm a' }}</p>
+                </div>  
+                
+                <div class="comment-message">
+                  <ng-container *ngIf="editingIndex !== i; else editField">
+                    <p [innerHtml]="comment.content"></p>
+                  </ng-container>
+                  <ng-template #editField>
+                    <div class="NgxEditor__Wrapper">
+                      <ngx-editor-menu [editor]="comment.editor"></ngx-editor-menu>
+                      <ngx-editor [editor]="comment.editor" [(ngModel)]="comment.content" [disabled]="false" 
+                      ></ngx-editor>
+                    </div>
+                  </ng-template>
+                </div>
+                <div class="comment-actions">
+                  <button
+                    class="btn_custom"
+                    (click)="toggleEditMode(i)"
+                  >
+                  {{editingIndex !== i ? "Edit":"Save"}}
+                </button>
+                  <modal-small (onDeleteComment)="onDeleteComment(comment.id)"></modal-small>
+                </div>
+              </div>  
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-custom">
+          <hr class="separator-modal">
+          <div class="comment">
             <img src="/assets/logo/placeholder_user.png" alt="User Logo" class="img-fluid rounded-circle comment-image">
             <div class="comment-body">
-              <div class="comment-header">
-                <p class="user-name">{{ comment.userName }}</p>
-                <p class="comment-date">{{ comment.date | date: 'MMM d, y' }}</p>
-                <p class="comment-time">{{ comment.date | date: 'h:mm a' }}</p>
-              </div>  
-              
               <div class="comment-message">
-                <ng-container *ngIf="editingIndex !== i; else editField">
-                  <p [innerHTML]="comment.content"></p>
-                </ng-container>
-                <ng-template #editField>
-                  <input type="text" class="form-control" [(ngModel)]="comment.content">
-                </ng-template>
+                <div class="NgxEditor__Wrapper">
+                  <ngx-editor-menu
+                    *ngIf="showButtons"
+                    [editor]="editorInput"
+                  ></ngx-editor-menu>
+                  <ngx-editor
+                    [editor]="editorInput"
+                    [(ngModel)]="html"
+                    [disabled]="false"
+                    [placeholder]="'Type here...'"
+                    (focusIn)="onEditorFocus()"
+                    ></ngx-editor>
+                </div>
               </div>
               <div class="comment-actions">
                 <button
-                  class="btn_custom"
-                  (click)="toggleEditMode(i)"
-                >
-                {{editingIndex !== i ? "Edit":"Save"}}
-              </button>
-                <modal-small (onDeleteComment)="onDeleteComment(comment.id)"></modal-small>
+                  (click)="addNewComment()"
+                  *ngIf="showButtons"
+                  class="btn btn-primary">Guardar</button>
+                <button
+                  (click)="onCancelAdding()"
+                  *ngIf="showButtons"
+                  class="btn_custom cancele"
+                >Cancelar</button>
               </div>
-            </div>  
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div class="footer-custom">
-        <hr class="separator-modal">
-        <div class="comment">
-          <img src="/assets/logo/placeholder_user.png" alt="User Logo" class="img-fluid rounded-circle comment-image">
-          <div class="comment-body">
-            <div class="comment-header">
-              <p class="user-name"> Juan</p>
-              
-            </div>
-            <div class="comment-message">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Add comment"
-                (focus)="showButtons=true"
-                [(ngModel)]="inputValue"
-                (keyup.enter)="addNewComment()"
-                
-              >
-            </div>
-            <div class="comment-actions">
-              <button
-                (click)="addNewComment()"
-                *ngIf="showButtons"
-                class="btn btn-primary">Guardar</button>
-              <button
-                (click)="onCancelAdding()"
-                *ngIf="showButtons"
-                class="btn_custom cancele"
-              >Cancelar</button>
-            </div>
-          </div>
+          <hr class="separator-modal">
         </div>
       </div>
     </div>
   </div>
-</div>

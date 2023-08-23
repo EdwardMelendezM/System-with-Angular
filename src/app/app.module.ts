@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 
     
 import { HttpClientModule } from "@angular/common/http"
+import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   declarations: [
@@ -16,8 +17,8 @@ import { HttpClientModule } from "@angular/common/http"
     SharedModule,
     BrowserModule,
 
-    HttpClientModule
-    ,
+
+    HttpClientModule,
     AppRoutingModule,
   ],
   providers: [],

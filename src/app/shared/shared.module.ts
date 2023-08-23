@@ -9,6 +9,7 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
 import { ModalComponent } from './components/modal/modal.component';
 import { ModalSmallComponent } from './components/modal-small/modal-small.component';
 import { FormsModule } from '@angular/forms';
+import { NgxEditorModule } from 'ngx-editor';
 
 
 
@@ -25,7 +26,9 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    NgxEditorModule,
+
   ],
   exports:[
     HomePageComponent,

@@ -1,6 +1,17 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnDestroy, OnInit } from '@angular/core';
+
+import { Editor } from 'ngx-editor';
 
 declare var bootstrap: any;
+
+interface Comment {
+  id: any;
+  userLogo: string;
+  userName: string;
+  date: Date;
+  content: string;
+  editor: Editor;
+}
 
 @Component({
   selector: 'modal-app',
@@ -8,9 +19,12 @@ declare var bootstrap: any;
   styleUrls:["./modal.component.css"]
   
 })
-export class ModalComponent {
+export class ModalComponent implements OnInit, OnDestroy {
+  
 
   @ViewChild('exampleModalCenter') modalElement!: ElementRef;
+  @ViewChild('isEditing') isEditing!: ElementRef<HTMLInputElement>;
+  
   private formModal: any;
 
   showButtons: boolean = false
@@ -19,32 +33,37 @@ export class ModalComponent {
   editingIndex: number = -1;
 
 
-  comments: any[] = [
-    {
-      id:crypto.randomUUID(),
-      userLogo: 'path-to-user-logo-1',
-      userName: 'Mario F.',
-      date: new Date(),
-      content: 'Las pruebas estan dando problemas con las peticiones http'
-    },
-    {
-      id: crypto.randomUUID(),
-      userLogo: 'path-to-user-logo-2',
-      userName: 'Pedrio S.',
-      date: new Date(),
-      content: 'El problema esta en la validacion de datos del formulario'
-    },
-    {
-      id: crypto.randomUUID(),
-      userLogo: 'path-to-user-logo-2',
-      userName: 'Mario F.',
-      date: new Date(),
-      content: 'Otro mensaje de pruebas.'
-    },
-  ];
+  editor!: Editor;
+  html:string = '';
+  editorInput!:Editor
 
+  comments: Comment[] = [];
+
+  ngOnInit():void{
+    this.editorInput = new Editor();
+    
+    if(this.comments.length!==0){
+      this.comments.forEach(comment => {
+        comment.editor = new Editor();
+      });
+    }
+  }
   ngAfterViewInit(): void {
     this.formModal = new bootstrap.Modal(this.modalElement.nativeElement);
+  }
+  ngOnDestroy(): void {
+    this.editorInput.destroy()
+    
+    if(this.comments.length!==0){
+      this.comments.forEach(comment => {
+        comment.editor.destroy()
+      });
+    }
+    
+  }
+
+  onEditorFocus(): void {
+    this.showButtons = true;
   }
 
   onOpenModal(): void {
@@ -55,39 +74,38 @@ export class ModalComponent {
     this.formModal.hide();
   }
 
-  addNewComment():void{
-    const newComment = {
-      id: crypto.randomUUID(),
-      userLogo: 'path-to-user-logo-2',
-      userName: 'Juan',
-      date: new Date(),
-      content: this.inputValue
-    }
-    //  here make the request
-    // try {
-    //   this.http.post("url", newComment).subscribe()
-    // } catch (error) {
-    //   console.log("Something went wrong")
-    // }
-    this.comments.unshift(newComment)
-    this.inputValue=""
-    this.showButtons = false
 
+
+  addNewComment(): void {
+    if (this.html.trim().length < 1) return;
+
+    const newComment = {
+      id : crypto.randomUUID(),
+      userLogo : 'url-user',
+      userName : 'Juan',
+      date : new Date(),
+      content : this.html,
+      editor : new Editor(),
+    }
+    console.log(this.html)
+
+    this.comments.unshift(newComment);
+    this.html = "";
+    this.showButtons = false;
   }
 
   onCancelAdding():void{
     this.showButtons = false
-    this.inputValue=""
+    this.html =""
   }
 
-  onDeleteComment(id:string):void{
-    //  here make the request
-    // try {
-    //   this.http.delete(`url${id}`).subscribe()
-    // } catch (error) {
-    //   console.log("Something went wrong")
-    // }
-    this.comments=[...this.comments.filter(comment=>comment.id!==id)]
+  onDeleteComment(id: string): void {
+    const indexToDelete = this.comments.findIndex(comment => comment.id === id);
+    if (indexToDelete !== -1) {
+      // Destruir la instancia del editor antes de eliminar el comentario
+      this.comments[indexToDelete].editor.destroy();
+      this.comments.splice(indexToDelete, 1);
+    }
   }
 
   onSorted(order: 'asc' | 'desc'): void {
@@ -103,5 +121,9 @@ export class ModalComponent {
 
   toggleEditMode(index: number): void {
     this.editingIndex = (this.editingIndex === index) ? -1 : index;
+
+    
   }
 }
+
+
