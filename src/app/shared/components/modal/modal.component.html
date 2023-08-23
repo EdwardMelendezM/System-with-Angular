@@ -1,6 +1,6 @@
   <!-- Button trigger modal -->
   <button (click)="onOpenModal()" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
-    Ver comentarios
+    {{btnLabel}}
   </button> 
 
   <!-- Modal -->
@@ -10,10 +10,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">
-            Hacer un CRUD de las colecciones Mensajeria y Evaluaciones
+            {{title}}
           </h5>
           <div class="d-flex gap-2">
-            <button (click)="onSorted('desc')" type="button" class="btn btn-sm btn-secundary" data-dismiss="modal" aria-label="Close">
+            <button (click)="onSorted('desc')" 
+                    type="button" 
+                    class="btn btn-sm btn-secundary" 
+                    data-dismiss="modal" 
+                    aria-label="Close">
               <span role="img" aria-label="Más recientes primero" class="css-1wits42"
                 style="--icon-primary-color: currentColor; --icon-secondary-color: var(--ds-surface, #FFFFFF);"><svg
                   role="presentation" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -93,8 +97,8 @@
                     [(ngModel)]="html"
                     [disabled]="false"
                     [placeholder]="'Type here...'"
-                    (focusIn)="onEditorFocus()"
-                    ></ngx-editor>
+                    (focusIn)="onEditorFocus()">
+                  </ngx-editor>
                 </div>
               </div>
               <div class="comment-actions">

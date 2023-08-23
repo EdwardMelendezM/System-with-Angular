@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnDestroy, OnInit, Input } from '@angular/core';
 
 import { Editor } from 'ngx-editor';
 
@@ -21,10 +21,12 @@ interface Comment {
 })
 export class ModalComponent implements OnInit, OnDestroy {
   
+  @Input() btnLabel:string=''
+  @Input() title:string=''
 
   @ViewChild('exampleModalCenter') modalElement!: ElementRef;
   @ViewChild('isEditing') isEditing!: ElementRef<HTMLInputElement>;
-  
+
   private formModal: any;
 
   showButtons: boolean = false
@@ -48,9 +50,11 @@ export class ModalComponent implements OnInit, OnDestroy {
       });
     }
   }
+
   ngAfterViewInit(): void {
     this.formModal = new bootstrap.Modal(this.modalElement.nativeElement);
   }
+
   ngOnDestroy(): void {
     this.editorInput.destroy()
     
@@ -74,10 +78,13 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.formModal.hide();
   }
 
-
+  extractTextFromHTML(html: string): string {
+    const regex = /<[^>]*>/g; 
+    return html.replace(regex, ''); 
+  }
 
   addNewComment(): void {
-    if (this.html.trim().length < 1) return;
+    if (this.extractTextFromHTML(this.html).trim().length < 2) return;
 
     const newComment = {
       id : crypto.randomUUID(),
@@ -100,7 +107,8 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   onDeleteComment(id: string): void {
-    const indexToDelete = this.comments.findIndex(comment => comment.id === id);
+    const indexToDelete = this.comments.
+                            findIndex(comment => comment.id ===id);
     if (indexToDelete !== -1) {
       // Destruir la instancia del editor antes de eliminar el comentario
       this.comments[indexToDelete].editor.destroy();
@@ -118,11 +126,8 @@ export class ModalComponent implements OnInit, OnDestroy {
     });
   }
 
-
-  toggleEditMode(index: number): void {
-    this.editingIndex = (this.editingIndex === index) ? -1 : index;
-
-    
+  toggleEditMode(iComment: number): void {
+    this.editingIndex = (this.editingIndex === iComment) ? -1 : iComment;
   }
 }
 
