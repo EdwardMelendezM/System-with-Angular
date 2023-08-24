@@ -17,10 +17,10 @@ interface Comment {
   selector: 'modal-app',
   templateUrl: './modal.component.html',
   styleUrls:["./modal.component.css"]
-  
+
 })
 export class ModalComponent implements OnInit, OnDestroy {
-  
+
   @Input() btnLabel:string=''
   @Input() title:string=''
 
@@ -43,7 +43,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   ngOnInit():void{
     this.editorInput = new Editor();
-    
+
     if(this.comments.length!==0){
       this.comments.forEach(comment => {
         comment.editor = new Editor();
@@ -57,13 +57,13 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.editorInput.destroy()
-    
+
     if(this.comments.length!==0){
       this.comments.forEach(comment => {
         comment.editor.destroy()
       });
     }
-    
+
   }
 
   onEditorFocus(): void {
@@ -79,8 +79,8 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   extractTextFromHTML(html: string): string {
-    const regex = /<[^>]*>/g; 
-    return html.replace(regex, ''); 
+    const regex = /<[^>]*>/g;
+    return html.replace(regex, '');
   }
 
   addNewComment(): void {
@@ -110,7 +110,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     const indexToDelete = this.comments.
                             findIndex(comment => comment.id ===id);
     if (indexToDelete !== -1) {
-      // Destruir la instancia del editor antes de eliminar el comentario
+      // Destruct the instant before to delete comment
       this.comments[indexToDelete].editor.destroy();
       this.comments.splice(indexToDelete, 1);
     }

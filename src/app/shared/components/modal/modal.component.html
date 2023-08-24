@@ -1,7 +1,8 @@
   <!-- Button trigger modal -->
   <button (click)="onOpenModal()" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
     {{btnLabel}}
-  </button> 
+  </button>
+
 
   <!-- Modal -->
   <div #exampleModalCenter class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -13,10 +14,10 @@
             {{title}}
           </h5>
           <div class="d-flex gap-2">
-            <button (click)="onSorted('desc')" 
-                    type="button" 
-                    class="btn btn-sm btn-secundary" 
-                    data-dismiss="modal" 
+            <button (click)="onSorted('desc')"
+                    type="button"
+                    class="btn btn-sm btn-secundary"
+                    data-dismiss="modal"
                     aria-label="Close">
               <span role="img" aria-label="Más recientes primero" class="css-1wits42"
                 style="--icon-primary-color: currentColor; --icon-secondary-color: var(--ds-surface, #FFFFFF);"><svg
@@ -53,8 +54,8 @@
                   <p class="user-name">{{ comment.userName }}</p>
                   <p class="comment-date">{{ comment.date | date: 'MMM d, y' }}</p>
                   <p class="comment-time">{{ comment.date | date: 'h:mm a' }}</p>
-                </div>  
-                
+                </div>
+
                 <div class="comment-message">
                   <ng-container *ngIf="editingIndex !== i; else editField">
                     <p [innerHtml]="comment.content"></p>
@@ -62,7 +63,7 @@
                   <ng-template #editField>
                     <div class="NgxEditor__Wrapper">
                       <ngx-editor-menu [editor]="comment.editor"></ngx-editor-menu>
-                      <ngx-editor [editor]="comment.editor" [(ngModel)]="comment.content" [disabled]="false" 
+                      <ngx-editor [editor]="comment.editor" [(ngModel)]="comment.content" [disabled]="false"
                       ></ngx-editor>
                     </div>
                   </ng-template>
@@ -76,7 +77,7 @@
                 </button>
                   <modal-small (onDeleteComment)="onDeleteComment(comment.id)"></modal-small>
                 </div>
-              </div>  
+              </div>
             </div>
           </div>
         </div>

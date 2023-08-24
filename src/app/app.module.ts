@@ -1,27 +1,30 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {HttpClientModule} from "@angular/common/http"
 
-import { AppComponent } from './app.component';
-import { SharedModule } from './shared/shared.module';
-import { AppRoutingModule } from './app-routing.module';
+import {BrowserModule} from '@angular/platform-browser';
 
-    
-import { HttpClientModule } from "@angular/common/http"
-import { NgxEditorModule } from 'ngx-editor';
+import {AppComponent} from './app.component';
+import {SharedModule} from './shared/shared.module';
+import {AppRoutingModule} from './app-routing.module';
+import {CustomPipe} from "./pipes/custom.pipe";
 
+// hello
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
     SharedModule,
     BrowserModule,
 
-
     HttpClientModule,
     AppRoutingModule,
   ],
   providers: [],
+  exports: [
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

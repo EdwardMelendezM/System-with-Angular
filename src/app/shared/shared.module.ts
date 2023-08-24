@@ -10,6 +10,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { ModalSmallComponent } from './components/modal-small/modal-small.component';
 import { FormsModule } from '@angular/forms';
 import { NgxEditorModule } from 'ngx-editor';
+import {CustomPipe} from "../pipes/custom.pipe";
 
 
 

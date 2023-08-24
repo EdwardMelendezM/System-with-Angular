@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { HomePageComponent } from "./shared/pages/home-page/home-page.component";
 import { AboutPageComponent } from "./shared/pages/about-page/about-page.component";
 import {  ContactPageComponent } from "./shared/pages/contact-page/contact-page.component";
+import {PipesPageComponent} from "./countries/pages/pipes-page/pipes-page.component";
 
 
 const routes: Routes = [
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: "countries",
     loadChildren: ()=>import("./countries/countries.module").then(m=>m.ContriesModule)
+  },
+  {
+    path: "pipes",
+    component: PipesPageComponent
   },
   {
     path:"**",

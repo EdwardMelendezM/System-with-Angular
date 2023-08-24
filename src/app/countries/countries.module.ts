@@ -8,6 +8,8 @@ import { CountriesRoutingModule } from './countries-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { CountryTableComponent } from './components/country-table/country-table.component';
 import { ModalCommentsComponent } from './components/modal-comments/modal-comments.component';
+import { PipesPageComponent } from './pages/pipes-page/pipes-page.component';
+import {CustomPipe} from "../pipes/custom.pipe";
 
 
 
@@ -19,6 +21,8 @@ import { ModalCommentsComponent } from './components/modal-comments/modal-commen
     CountryPageComponent,
     CountryTableComponent,
     ModalCommentsComponent,
+    PipesPageComponent,
+    CustomPipe
   ],
   imports: [
     CommonModule,
