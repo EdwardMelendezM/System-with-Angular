@@ -6,8 +6,9 @@ import {Todo} from "../../interfaces/list-todo.interface";
   templateUrl: './pipes-page.component.html',
 })
 export class PipesPageComponent {
-  name:string = "Raul"
-  capital:number = 984654518
+  public name:string = "Raul"
+  public capital:number = 984654518
+  public orderBy? : keyof Todo | '' = ''
 
   lisTodo : Todo[] = [
     {
@@ -24,7 +25,16 @@ export class PipesPageComponent {
       id:'3',
       name:"Pedro",
       age:88
+    },
+    {
+      id:'4',
+      name:"Almiro",
+      age:12
     }
   ]
+
+  changeOrderBy(value: keyof Todo):void{
+    this.orderBy=value
+  }
 
 }

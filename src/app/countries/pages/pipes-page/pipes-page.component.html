@@ -17,8 +17,16 @@
     <br>
     {{capital | number:'1.2-2'}}
   </div>
-
-  <div *ngFor="let todo  of lisTodo | sortBy:'name' ">
+  <h2 class="mt-4">Hera We're going to put pipe to sort a list</h2>
+  <div class="d-flex gap-3">
+    <button
+            (click)="changeOrderBy('name')"
+            class="btn btn-outline-dark">Sort by name</button>
+    <button
+            (click)="changeOrderBy('age')"
+            class="btn btn-outline-info">Sort by age</button>
+  </div>
+  <div *ngFor="let todo  of lisTodo | sortBy:orderBy ">
       <div>{{todo.name}} - {{todo.age}}</div>
   </div>
 </div>

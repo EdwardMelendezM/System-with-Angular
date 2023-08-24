@@ -6,7 +6,7 @@ import {Todo} from "../countries/interfaces/list-todo.interface";
 })
 
 export class SortByPipe implements PipeTransform {
-  transform(todo: Todo[], sortBy: keyof Todo | null): Todo[] {
+  transform(todo: Todo[], sortBy?: keyof Todo | ''): Todo[] {
     switch (sortBy){
         case 'name':
           return todo.sort((a,b)=>a.name>b.name ? 1 : -1);
