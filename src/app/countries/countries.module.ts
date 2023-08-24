@@ -10,6 +10,7 @@ import { CountryTableComponent } from './components/country-table/country-table.
 import { ModalCommentsComponent } from './components/modal-comments/modal-comments.component';
 import { PipesPageComponent } from './pages/pipes-page/pipes-page.component';
 import {CustomPipe} from "../pipes/custom.pipe";
+import {SortByPipe} from "../pipes/sort.by.pipe";
 
 
 
@@ -22,7 +23,8 @@ import {CustomPipe} from "../pipes/custom.pipe";
     CountryTableComponent,
     ModalCommentsComponent,
     PipesPageComponent,
-    CustomPipe
+    CustomPipe,
+    SortByPipe
   ],
   imports: [
     CommonModule,

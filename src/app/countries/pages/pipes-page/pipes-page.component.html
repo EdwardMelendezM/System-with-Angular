@@ -17,4 +17,8 @@
     <br>
     {{capital | number:'1.2-2'}}
   </div>
+
+  <div *ngFor="let todo  of lisTodo | sortBy:'name' ">
+      <div>{{todo.name}} - {{todo.age}}</div>
+  </div>
 </div>
