@@ -8,11 +8,20 @@ import { CountryService } from '../../services/country.service';
   ]
 })
 export class ByRegionPageComponent {
+
   public countries: Country[] = []
+  public regions:string[] = ["Africa","Americas","Asia","Europe","Oceania"]
+  public selectedRegion?:string
+
   constructor(private countryService: CountryService) { }
 
-  searchByRegion(term: string) {
-    this.countryService.searchRegion(term).subscribe(countries => {
+
+
+  searchByRegion(region: string) {
+
+    this.selectedRegion = region
+
+    this.countryService.searchRegion(region).subscribe(countries => {
       this.countries = countries
     })
   }
